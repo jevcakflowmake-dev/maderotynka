@@ -4,48 +4,46 @@ import { useEffect, useRef } from 'react'
 
 const contacts = [
   {
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-        <circle cx="12" cy="12" r="4"/>
-        <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
-      </svg>
-    ),
     label: 'Instagram',
     value: '@_maderotynka',
     href: 'https://instagram.com/_maderotynka',
+    iconPath: (
+      <>
+        <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+        <circle cx="12" cy="12" r="4" />
+        <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+      </>
+    ),
   },
   {
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.87 19.79 19.79 0 01.9 1.22 2 2 0 012.88 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.09 7.68a16 16 0 006.29 6.29l1.05-1.05a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 15.92z"/>
-      </svg>
-    ),
     label: 'Telefon',
     value: '+420 733 290 621',
     href: 'tel:+420733290621',
+    iconPath: (
+      <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.87 19.79 19.79 0 010.9 1.22 2 2 0 012.88 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.09 7.68a16 16 0 006.29 6.29l1.05-1.05a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 15.92z" />
+    ),
   },
   {
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
-        <circle cx="12" cy="10" r="3"/>
-      </svg>
-    ),
     label: 'Adresa',
     value: 'Boskovice, Nádražní 286/8',
     href: 'https://maps.google.com/?q=Boskovice+Nádražní+286',
+    iconPath: (
+      <>
+        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" />
+        <circle cx="12" cy="10" r="3" />
+      </>
+    ),
   },
   {
-    icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="12" cy="12" r="10"/>
-        <polyline points="12 6 12 12 16 14"/>
-      </svg>
-    ),
     label: 'Termíny',
-    value: 'Dle dohody',
+    value: 'Po dohodě · Po–Pá',
     href: null,
+    iconPath: (
+      <>
+        <circle cx="12" cy="12" r="10" />
+        <polyline points="12 6 12 12 16 14" />
+      </>
+    ),
   },
 ]
 
@@ -59,7 +57,7 @@ export default function Contact() {
           if (e.isIntersecting) e.target.classList.add('is-visible')
         })
       },
-      { threshold: 0.1 }
+      { threshold: 0.08 }
     )
     const els = sectionRef.current?.querySelectorAll('.reveal, .reveal-stagger')
     els?.forEach((el) => observer.observe(el))
@@ -67,99 +65,151 @@ export default function Contact() {
   }, [])
 
   return (
-    <>
-      <section id="contact" ref={sectionRef} className="py-24 lg:py-36 bg-[#2C1F0E] overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6 lg:px-10">
-          <p className="reveal font-body text-xs text-[#B07D55] tracking-[0.2em] uppercase mb-4">
-            05 / Kontakt
-          </p>
-          <h2
-            className="reveal font-display text-[#F7F0E8] mb-14"
-            style={{ fontSize: 'clamp(2.2rem, 4.5vw, 3.8rem)', letterSpacing: '-0.03em', lineHeight: '0.95' }}
-          >
-            Objednejte se
-            <br />
-            <em className="not-italic text-[#B07D55]">ještě dnes</em>
-          </h2>
+    <section
+      id="contact"
+      ref={sectionRef}
+      className="py-28 lg:py-40 bg-mocha overflow-hidden relative"
+    >
+      <div
+        className="absolute -top-40 -left-40 w-[500px] h-[500px] rounded-full pointer-events-none"
+        style={{
+          background:
+            'radial-gradient(circle, rgba(232, 197, 189, 0.18) 0%, transparent 70%)',
+        }}
+        aria-hidden
+      />
+      <div
+        className="absolute -bottom-40 -right-40 w-[600px] h-[600px] rounded-full pointer-events-none"
+        style={{
+          background:
+            'radial-gradient(circle, rgba(201, 168, 124, 0.18) 0%, transparent 70%)',
+        }}
+        aria-hidden
+      />
 
-          {/* Contact cards */}
-          <div className="reveal-stagger grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-14">
-            {contacts.map((c) => {
-              const Inner = (
-                <div className="service-card bg-[#3D2E18] rounded-2xl p-6 h-full">
-                  <div className="text-[#B07D55] mb-4">{c.icon}</div>
-                  <p className="font-body text-xs text-[#9E8A79] uppercase tracking-widest mb-2">{c.label}</p>
-                  <p className="font-display text-[#F7F0E8] text-lg font-semibold leading-snug">{c.value}</p>
-                </div>
-              )
+      <div className="max-w-7xl mx-auto px-6 lg:px-10 relative z-10">
+        <p className="reveal section-tag mb-6 text-blush">08 — Kontakt</p>
 
-              return c.href ? (
-                <a
-                  key={c.label}
-                  href={c.href}
-                  target={c.href.startsWith('http') ? '_blank' : undefined}
-                  rel={c.href.startsWith('http') ? 'noopener noreferrer' : undefined}
-                  className="block"
-                >
-                  {Inner}
-                </a>
-              ) : (
-                <div key={c.label}>{Inner}</div>
-              )
-            })}
-          </div>
-
-          {/* Big CTA */}
-          <div className="reveal text-center py-14 border-t border-[#3D2E18]">
-            <p className="font-body text-[#9E8A79] text-base mb-8 max-w-sm mx-auto">
-              Nejsnazší způsob objednání? Napište nám přímo na Instagram.
-            </p>
-            <a
-              href="https://instagram.com/_maderotynka"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 px-10 py-4 rounded-full bg-[#B07D55] text-[#F7F0E8] font-body font-medium text-base hover:bg-[#C49060] transition-colors duration-300 shadow-lg"
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
+          {/* Left — info */}
+          <div className="lg:col-span-7">
+            <h2
+              className="reveal headline text-cream mb-10"
+              style={{ fontSize: 'clamp(2.6rem, 6vw, 5.5rem)' }}
             >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-                <circle cx="12" cy="12" r="4"/>
-                <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
-              </svg>
-              Objednat se přes Instagram
-            </a>
-          </div>
-        </div>
-      </section>
+              Pojďme začít.
+              <br />
+              <em className="text-blush">Vaše tělo si o to říká.</em>
+            </h2>
 
-      {/* Footer */}
-      <footer className="bg-[#1A1008] py-10">
-        <div className="max-w-7xl mx-auto px-6 lg:px-10 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-full bg-[#B07D55] flex items-center justify-center">
-              <span className="font-display font-bold text-[#F7F0E8] text-xs">MT</span>
+            <p className="reveal font-body text-cream/70 text-lg leading-relaxed font-light max-w-xl mb-12">
+              Nejjednodušší způsob objednání je přes Instagram. Napište mi přibližný
+              čas a typ procedury, který chcete vyzkoušet — vrátím se vám obvykle
+              do několika hodin.
+            </p>
+
+            <div className="reveal-stagger grid grid-cols-1 sm:grid-cols-2 gap-px bg-cream/10 rounded-2xl overflow-hidden mb-10">
+              {contacts.map((c) => {
+                const Inner = (
+                  <div className="bg-mocha p-7 lg:p-8 transition-colors duration-500 hover:bg-mocha-soft h-full flex flex-col justify-between">
+                    <svg
+                      width="22"
+                      height="22"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.4"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="text-blush mb-6"
+                      aria-hidden
+                    >
+                      {c.iconPath}
+                    </svg>
+                    <div>
+                      <p className="font-body text-[10px] uppercase tracking-widestest text-blush/80 mb-2">
+                        {c.label}
+                      </p>
+                      <p className="font-display italic text-cream text-xl lg:text-2xl leading-tight">
+                        {c.value}
+                      </p>
+                    </div>
+                  </div>
+                )
+
+                return c.href ? (
+                  <a
+                    key={c.label}
+                    href={c.href}
+                    target={c.href.startsWith('http') ? '_blank' : undefined}
+                    rel={c.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                    className="block"
+                  >
+                    {Inner}
+                  </a>
+                ) : (
+                  <div key={c.label}>{Inner}</div>
+                )
+              })}
             </div>
-            <span className="font-display text-[#F7F0E8] text-base font-semibold">MaderoTýnka</span>
           </div>
 
-          <p className="font-body text-xs text-[#9E8A79]">
-            © {new Date().getFullYear()} MaderoTýnka — Boskovice
-          </p>
+          {/* Right — CTA card */}
+          <div className="lg:col-span-5">
+            <div className="reveal sticky top-28 rounded-[2rem] overflow-hidden bg-blush-soft text-mocha p-8 lg:p-10 shadow-soft-blush">
+              <p className="font-body text-[10px] uppercase tracking-widestest text-mocha/60 mb-5">
+                Rezervace na jeden dotyk
+              </p>
+              <h3
+                className="font-display italic leading-tight mb-6"
+                style={{ fontSize: 'clamp(2rem, 3vw, 2.6rem)' }}
+              >
+                Objednejte se přes Instagram.
+              </h3>
+              <p className="font-body text-mocha/75 leading-relaxed font-light mb-8">
+                Otevřu vám DM zprávu rovnou s předvyplněným textem — stačí jen
+                doplnit termín, který vám vyhovuje.
+              </p>
 
-          <a
-            href="https://instagram.com/_maderotynka"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 font-body text-xs text-[#9E8A79] hover:text-[#B07D55] transition-colors duration-300"
-          >
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-              <circle cx="12" cy="12" r="4"/>
-              <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
-            </svg>
-            @_maderotynka
-          </a>
+              <a
+                href="https://instagram.com/_maderotynka"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 px-7 py-3.5 rounded-full bg-mocha text-cream font-body text-sm tracking-wide hover:bg-mocha-soft transition-colors duration-500 mb-8"
+              >
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden
+                >
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                  <circle cx="12" cy="12" r="4" />
+                  <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+                </svg>
+                Napsat na @_maderotynka
+              </a>
+
+              <div className="pt-6 border-t border-mocha/15 space-y-3">
+                <p className="font-body text-xs text-mocha/60 uppercase tracking-widestest">
+                  Nebo telefonicky
+                </p>
+                <a
+                  href="tel:+420733290621"
+                  className="block font-display italic text-2xl text-mocha hover:text-blush-deep transition-colors duration-300"
+                >
+                  +420 733 290 621
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
-      </footer>
-    </>
+      </div>
+    </section>
   )
 }

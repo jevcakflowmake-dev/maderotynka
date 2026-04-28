@@ -1,14 +1,34 @@
 import type { Metadata } from 'next'
+import { Cormorant_Garamond, Outfit } from 'next/font/google'
 import './globals.css'
 
+const cormorant = Cormorant_Garamond({
+  subsets: ['latin', 'latin-ext'],
+  weight: ['300', '400', '500', '600', '700'],
+  style: ['normal', 'italic'],
+  variable: '--font-display',
+  display: 'swap',
+})
+
+const outfit = Outfit({
+  subsets: ['latin', 'latin-ext'],
+  weight: ['200', '300', '400', '500', '600'],
+  variable: '--font-body',
+  display: 'swap',
+})
+
 export const metadata: Metadata = {
-  title: 'MaderoTýnka — Maderoterapie Boskovice',
-  description: 'Profesionální maderoterapie, lymfomodeling a neinvazivní procedury v Boskovicích. Přírodní cesta ke krásné postavě.',
-  keywords: 'maderoterapie, boskovice, lymfomodeling, vakuumfit, kavitace, kosmetika',
+  title: 'MaderoTýnka — Maderoterapie & Beauty studio Boskovice',
+  description:
+    'Privátní studio maderoterapie v Boskovicích. Kolumbijská dřevěná masáž, lymfomodeling, VacuumFit a péče o pleť — jemná cesta k vaší přirozené kráse.',
+  keywords:
+    'maderoterapie, boskovice, lymfomodeling, vakuumfit, kavitace, kosmetika, beauty studio',
   openGraph: {
-    title: 'MaderoTýnka — Maderoterapie Boskovice',
-    description: 'Přírodní cesta ke krásné postavě. Maderoterapie, lymfomodeling, VacuumFit zábal a další procedury v Boskovicích.',
+    title: 'MaderoTýnka — Maderoterapie & Beauty studio Boskovice',
+    description:
+      'Jemná cesta k vaší přirozené kráse. Maderoterapie, lymfomodeling, VacuumFit a péče o pleť v Boskovicích.',
     type: 'website',
+    locale: 'cs_CZ',
   },
 }
 
@@ -18,15 +38,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="cs">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300;1,9..40,400&display=swap"
-          rel="stylesheet"
-        />
-      </head>
+    <html lang="cs" className={`${cormorant.variable} ${outfit.variable}`}>
       <body>{children}</body>
     </html>
   )

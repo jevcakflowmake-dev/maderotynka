@@ -38,74 +38,110 @@ export default function Reviews() {
   }, [])
 
   return (
-    <section id="reviews" ref={sectionRef} className="py-24 lg:py-36 bg-[#EDE2D4] overflow-hidden relative">
-      {/* Decorative circles */}
+    <section
+      id="reviews"
+      ref={sectionRef}
+      className="py-28 lg:py-40 bg-cream overflow-hidden relative"
+    >
       <div
-        className="absolute -top-32 -right-32 w-96 h-96 rounded-full pointer-events-none"
-        style={{ background: 'radial-gradient(circle, rgba(176,125,85,0.12) 0%, transparent 70%)' }}
-        aria-hidden
-      />
-      <div
-        className="absolute -bottom-24 -left-24 w-64 h-64 rounded-full pointer-events-none"
-        style={{ background: 'radial-gradient(circle, rgba(176,125,85,0.08) 0%, transparent 70%)' }}
+        className="absolute -top-32 -right-32 w-[500px] h-[500px] rounded-full pointer-events-none"
+        style={{
+          background:
+            'radial-gradient(circle, rgba(232, 197, 189, 0.35) 0%, transparent 70%)',
+        }}
         aria-hidden
       />
 
       <div className="max-w-7xl mx-auto px-6 lg:px-10 relative z-10">
-        <p className="reveal font-body text-xs text-[#9E8A79] tracking-[0.2em] uppercase mb-4">
-          04 / Recenze
-        </p>
-        <h2
-          className="reveal font-display text-[#2C1F0E] mb-14"
-          style={{ fontSize: 'clamp(2.2rem, 4.5vw, 3.8rem)', letterSpacing: '-0.03em', lineHeight: '0.95' }}
-        >
-          Co říkají
-          <br />
-          <em className="not-italic text-[#B07D55]">klientky</em>
-        </h2>
+        <p className="reveal section-tag mb-6">06 — Recenze</p>
 
-        <div className="reveal-stagger grid grid-cols-1 md:grid-cols-3 gap-6 mb-14">
-          {reviews.map((r) => (
-            <div
-              key={r.name}
-              className="service-card bg-[#F7F0E8] rounded-2xl p-7 flex flex-col justify-between"
-            >
-              <div>
-                {/* Stars */}
-                <div className="flex gap-1 mb-5">
-                  {Array.from({ length: 5 }).map((_, i) => (
-                    <svg key={i} width="16" height="16" viewBox="0 0 20 20" fill="#B07D55" aria-hidden>
-                      <path d="M10 1l2.63 5.33L18.5 7.18l-4.25 4.14 1 5.84L10 14.27l-5.25 2.89 1-5.84L1.5 7.18l5.87-.85L10 1z"/>
-                    </svg>
-                  ))}
-                </div>
-
-                <p className="font-body text-[#2C1F0E] text-sm leading-relaxed opacity-80 mb-6 italic">
-                  &ldquo;{r.text}&rdquo;
-                </p>
-              </div>
-
-              <div className="border-t border-[#EDE2D4] pt-4">
-                <p className="font-display text-[#2C1F0E] font-semibold text-base">{r.name}</p>
-                <p className="font-body text-xs text-[#9E8A79] mt-0.5">{r.service}</p>
-              </div>
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-16 items-end">
+          <h2
+            className="reveal lg:col-span-7 headline text-mocha"
+            style={{ fontSize: 'clamp(2.4rem, 5.5vw, 5rem)' }}
+          >
+            Slova <em>klientek</em>, které u nás našly cestu.
+          </h2>
+          <div className="reveal lg:col-span-5 flex items-center gap-3">
+            <div className="flex gap-0.5">
+              {Array.from({ length: 5 }).map((_, i) => (
+                <svg
+                  key={i}
+                  width="18"
+                  height="18"
+                  viewBox="0 0 20 20"
+                  fill="#C9A87C"
+                  aria-hidden
+                >
+                  <path d="M10 1l2.63 5.33L18.5 7.18l-4.25 4.14 1 5.84L10 14.27l-5.25 2.89 1-5.84L1.5 7.18l5.87-.85L10 1z" />
+                </svg>
+              ))}
             </div>
+            <p className="font-body text-sm text-mocha/70 font-light">
+              5,0 z hodnocení klientek
+            </p>
+          </div>
+        </div>
+
+        <div className="reveal-stagger grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6 mb-16">
+          {reviews.map((r) => (
+            <figure
+              key={r.name}
+              className="soft-card relative bg-sand/60 border border-blush/15 rounded-3xl p-8 lg:p-9 flex flex-col justify-between min-h-[320px]"
+            >
+              {/* Quote mark */}
+              <span
+                className="absolute top-6 right-7 font-display italic text-blush-deep/40 leading-none select-none"
+                style={{ fontSize: '5rem' }}
+                aria-hidden
+              >
+                "
+              </span>
+
+              <blockquote
+                className="font-display italic text-mocha leading-snug font-light relative z-10"
+                style={{ fontSize: 'clamp(1.1rem, 1.4vw, 1.4rem)' }}
+              >
+                {r.text}
+              </blockquote>
+
+              <figcaption className="mt-8 pt-6 border-t border-mocha/10">
+                <p className="font-body text-mocha font-medium text-sm tracking-wide">
+                  {r.name}
+                </p>
+                <p className="font-body text-xs text-muted mt-0.5 tracking-wide">
+                  {r.service}
+                </p>
+              </figcaption>
+            </figure>
           ))}
         </div>
 
         {/* CTA to Instagram */}
-        <div className="reveal text-center">
-          <p className="font-body text-sm text-[#9E8A79] mb-5">Více recenzí najdete na Instagramu</p>
+        <div className="reveal flex flex-col items-center text-center gap-5 pt-10 border-t border-mocha/10">
+          <p className="font-display italic text-mocha/80 text-2xl">
+            Více recenzí najdete na Instagramu.
+          </p>
           <a
             href="https://instagram.com/_maderotynka"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 px-8 py-3.5 rounded-full bg-[#2C1F0E] text-[#F7F0E8] font-body font-medium text-sm hover:bg-[#B07D55] transition-colors duration-300"
+            className="btn-ghost"
           >
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
-              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-              <circle cx="12" cy="12" r="4"/>
-              <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden
+            >
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+              <circle cx="12" cy="12" r="4" />
+              <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
             </svg>
             @_maderotynka
           </a>

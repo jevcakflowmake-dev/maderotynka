@@ -11,28 +11,34 @@ const items = [
 ]
 
 export default function Marquee() {
-  const doubled = [...items, ...items]
+  const doubled = [...items, ...items, ...items]
 
   return (
-    <section className="bg-[#2C1F0E] py-5 overflow-hidden relative">
-      {/* Fade left */}
+    <section className="bg-sand py-7 overflow-hidden relative border-y border-blush/20">
+      {/* Soft fades on edges */}
       <div
-        className="absolute left-0 top-0 bottom-0 w-24 z-10 pointer-events-none"
-        style={{ background: 'linear-gradient(to right, #2C1F0E, transparent)' }}
+        className="absolute left-0 top-0 bottom-0 w-32 z-10 pointer-events-none"
+        style={{ background: 'linear-gradient(to right, #EFE4D6, transparent)' }}
+        aria-hidden
       />
-      {/* Fade right */}
       <div
-        className="absolute right-0 top-0 bottom-0 w-24 z-10 pointer-events-none"
-        style={{ background: 'linear-gradient(to left, #2C1F0E, transparent)' }}
+        className="absolute right-0 top-0 bottom-0 w-32 z-10 pointer-events-none"
+        style={{ background: 'linear-gradient(to left, #EFE4D6, transparent)' }}
+        aria-hidden
       />
 
       <div className="marquee-track">
         {doubled.map((item, i) => (
-          <span key={i} className="flex items-center gap-5 pr-5 whitespace-nowrap">
-            <span className="font-body text-[#F7F0E8] text-sm tracking-widest uppercase opacity-80">
+          <span key={i} className="flex items-center gap-8 pr-8 whitespace-nowrap">
+            <span className="font-display italic text-mocha text-2xl lg:text-3xl">
               {item}
             </span>
-            <span className="text-[#B07D55] text-base" aria-hidden>✦</span>
+            <span
+              className="text-gold text-lg leading-none"
+              aria-hidden
+            >
+              ✦
+            </span>
           </span>
         ))}
       </div>
