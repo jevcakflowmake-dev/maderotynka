@@ -1,0 +1,148 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg: #F7F0E8;
+  --surface: #EDE2D4;
+  --dark: #2C1F0E;
+  --accent: #B07D55;
+  --muted: #9E8A79;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--dark);
+  font-family: 'DM Sans', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* Grain texture overlay */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+  opacity: 0.03;
+}
+
+/* ─── Keyframes ─── */
+@keyframes slideDown {
+  from { transform: translateY(-100%); opacity: 0; }
+  to   { transform: translateY(0);     opacity: 1; }
+}
+
+@keyframes fadeUp {
+  from { transform: translateY(32px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+@keyframes scaleIn {
+  from { transform: scale(0.88); opacity: 0; }
+  to   { transform: scale(1);    opacity: 1; }
+}
+
+@keyframes clipReveal {
+  from { clip-path: inset(0 100% 0 0); }
+  to   { clip-path: inset(0 0% 0 0); }
+}
+
+@keyframes marqueeScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ─── Animation classes ─── */
+.anim-nav {
+  animation: slideDown 0.6s ease both;
+}
+
+.anim-h1 {
+  animation: fadeUp 0.9s ease 0.3s both;
+}
+
+.anim-sub {
+  animation: fadeUp 0.7s ease 0.6s both;
+}
+
+.anim-cta {
+  animation: scaleIn 0.5s ease 0.8s both;
+}
+
+.anim-hero-img {
+  animation: clipReveal 1.2s ease 0.5s both;
+}
+
+/* ─── Reveal on scroll ─── */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-stagger > * {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal-stagger.is-visible > *:nth-child(1)  { opacity: 1; transform: translateY(0); transition-delay: 0.05s; }
+.reveal-stagger.is-visible > *:nth-child(2)  { opacity: 1; transform: translateY(0); transition-delay: 0.15s; }
+.reveal-stagger.is-visible > *:nth-child(3)  { opacity: 1; transform: translateY(0); transition-delay: 0.25s; }
+.reveal-stagger.is-visible > *:nth-child(4)  { opacity: 1; transform: translateY(0); transition-delay: 0.35s; }
+.reveal-stagger.is-visible > *:nth-child(5)  { opacity: 1; transform: translateY(0); transition-delay: 0.45s; }
+.reveal-stagger.is-visible > *:nth-child(6)  { opacity: 1; transform: translateY(0); transition-delay: 0.55s; }
+.reveal-stagger.is-visible > *:nth-child(7)  { opacity: 1; transform: translateY(0); transition-delay: 0.65s; }
+.reveal-stagger.is-visible > *:nth-child(8)  { opacity: 1; transform: translateY(0); transition-delay: 0.75s; }
+
+/* ─── Marquee ─── */
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marqueeScroll 20s linear infinite;
+}
+
+/* ─── Service card hover ─── */
+.service-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.service-card:hover {
+  transform: translateY(-4px) scale(1.015);
+  box-shadow: 0 20px 60px rgba(44, 31, 14, 0.15);
+}
+
+/* ─── Nav link underline sweep ─── */
+.nav-link {
+  position: relative;
+  text-decoration: none;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: var(--accent);
+  transition: width 0.3s ease;
+}
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* ─── Hero glow ─── */
+.hero-glow {
+  background: radial-gradient(ellipse 80% 60% at 60% 50%, rgba(176, 125, 85, 0.15) 0%, transparent 70%);
+}
