@@ -58,9 +58,9 @@ export default function Packages() {
             className="lg:col-span-7 text-foreground tracking-tight leading-[0.95]"
             style={{ fontSize: 'clamp(2.4rem, 6vw, 5.5rem)', fontWeight: 500 }}
           >
-            Kombinace, které <span className="italic-accent">zrychlí</span>
+            Kombinace, které <span className="italic-accent text-blush-deep">zrychlí</span>
             <br />
-            váš <span className="italic-accent">výsledek</span>.
+            váš <span className="italic-accent text-blush-deep">výsledek</span>.
           </motion.h2>
           <motion.p
             {...fadeUp(0.2)}

@@ -9,28 +9,32 @@ const tiles = [
     sublabel: 'Boskovice · Nádražní',
     span: 'lg:col-span-7 lg:row-span-2',
     aspect: 'aspect-[4/5] lg:aspect-auto lg:h-full',
-    bg: 'linear-gradient(155deg, hsl(0 0% 22%) 0%, hsl(0 0% 8%) 100%)',
+    bg: 'linear-gradient(155deg, #F2D9D2 0%, #E8C5BD 50%, #D4A5A0 100%)',
+    dark: false,
   },
   {
     label: 'Dřevěné nástroje',
     sublabel: 'kolumbijská technika',
     span: 'lg:col-span-5',
     aspect: 'aspect-[5/4]',
-    bg: 'linear-gradient(165deg, hsl(0 0% 18%) 0%, hsl(0 0% 4%) 100%)',
+    bg: 'linear-gradient(165deg, #C9A87C 0%, #5A4233 100%)',
+    dark: true,
   },
   {
     label: 'Ošetření pleti',
     sublabel: 'jemná dřevěná masáž',
     span: 'lg:col-span-3',
     aspect: 'aspect-[3/4]',
-    bg: 'linear-gradient(160deg, hsl(0 0% 30%) 0%, hsl(0 0% 6%) 100%)',
+    bg: 'linear-gradient(160deg, #FAF6F0 0%, #F2D9D2 60%, #E8C5BD 100%)',
+    dark: false,
   },
   {
     label: 'VacuumFit',
     sublabel: 'detoxikační zábal',
     span: 'lg:col-span-2',
     aspect: 'aspect-[3/4]',
-    bg: 'linear-gradient(160deg, hsl(0 0% 12%) 0%, hsl(0 0% 0%) 100%)',
+    bg: 'linear-gradient(160deg, #3D2A1E 0%, #5A4233 100%)',
+    dark: true,
   },
 ]
 
@@ -56,7 +60,7 @@ export default function Gallery() {
           >
             Privátní oáza,
             <br />
-            kde se <span className="italic-accent">zastavíte</span>.
+            kde se <span className="italic-accent text-blush-deep">zastavíte</span>.
           </motion.h2>
           <motion.p
             {...fadeUp(0.2)}
@@ -80,15 +84,22 @@ export default function Gallery() {
                 aria-hidden
               />
               <div
-                className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent pointer-events-none"
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                  background: t.dark
+                    ? 'linear-gradient(to top, rgba(0,0,0,0.55) 0%, transparent 70%)'
+                    : 'linear-gradient(to top, rgba(61,42,30,0.45) 0%, transparent 70%)',
+                }}
                 aria-hidden
               />
-              <figcaption className="absolute bottom-6 lg:bottom-8 left-6 lg:left-8 right-6 text-foreground">
-                <p className="text-[10px] uppercase tracking-widestest text-foreground/60 mb-1">
+              <figcaption
+                className="absolute bottom-6 lg:bottom-8 left-6 lg:left-8 right-6 text-cream"
+              >
+                <p className="text-[10px] uppercase tracking-widestest text-cream/85 mb-1">
                   {t.sublabel}
                 </p>
                 <p
-                  className="italic-accent leading-tight"
+                  className="italic-accent text-cream leading-tight"
                   style={{ fontSize: 'clamp(1.4rem, 2vw, 2rem)' }}
                 >
                   {t.label}

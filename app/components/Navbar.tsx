@@ -74,7 +74,7 @@ export default function Navbar() {
           <span className="absolute inset-[12px] rounded-full bg-foreground" />
         </span>
         <span className="font-sans text-foreground text-base tracking-tight font-semibold">
-          Madero<span className="italic-accent font-normal">Týnka</span>
+          Madero<span className="italic-accent font-normal text-blush-deep">Týnka</span>
         </span>
       </a>
 

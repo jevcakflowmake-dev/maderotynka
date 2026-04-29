@@ -104,8 +104,8 @@ export default function Services() {
             className="lg:col-span-7 text-foreground tracking-tight leading-[0.95]"
             style={{ fontSize: 'clamp(2.4rem, 6vw, 5.5rem)', fontWeight: 500 }}
           >
-            Ceník <span className="italic-accent text-foreground">procedur</span>
-            <br />a <span className="italic-accent text-foreground">sérií</span>.
+            Ceník <span className="italic-accent text-blush-deep">procedur</span>
+            <br />a <span className="italic-accent text-blush-deep">sérií</span>.
           </motion.h2>
           <motion.p
             {...fadeUp(0.2)}

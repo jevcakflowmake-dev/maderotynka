@@ -38,7 +38,7 @@ export default function Contact() {
       {/* HLS video bg */}
       <video
         ref={videoRef}
-        className="absolute inset-0 w-full h-full object-cover opacity-30"
+        className="absolute inset-0 w-full h-full object-cover opacity-20"
         autoPlay
         loop
         muted
@@ -48,7 +48,7 @@ export default function Contact() {
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            'radial-gradient(ellipse at center, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.85) 70%, hsl(var(--background)) 100%)',
+            'radial-gradient(ellipse at center, rgba(250,246,240,0.4) 0%, rgba(250,246,240,0.85) 70%, hsl(var(--background)) 100%)',
         }}
         aria-hidden
       />
@@ -66,9 +66,9 @@ export default function Contact() {
           className="text-foreground tracking-tight leading-[0.95] mb-8"
           style={{ fontSize: 'clamp(2.6rem, 7vw, 6rem)', fontWeight: 500 }}
         >
-          Pojďme <span className="italic-accent">začít</span>.
+          Pojďme <span className="italic-accent text-blush-deep">začít</span>.
           <br />
-          Vaše tělo si <span className="italic-accent">o to říká</span>.
+          Vaše tělo si <span className="italic-accent text-blush-deep">o to říká</span>.
         </motion.h2>
 
         <motion.p

@@ -1,7 +1,6 @@
 import type { Config } from 'tailwindcss'
 
 const config: Config = {
-  darkMode: 'class',
   content: [
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -36,6 +35,23 @@ const config: Config = {
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
         'hero-subtitle': 'hsl(var(--hero-subtitle))',
+
+        /* Direct beauty palette for explicit use */
+        cream: '#FAF6F0',
+        sand: '#EFE4D6',
+        blush: {
+          DEFAULT: '#E8C5BD',
+          soft: '#F2D9D2',
+          deep: '#D4A5A0',
+        },
+        gold: {
+          DEFAULT: '#C9A87C',
+          soft: '#E2C9A1',
+        },
+        mocha: {
+          DEFAULT: '#3D2A1E',
+          soft: '#5A4233',
+        },
       },
       fontFamily: {
         sans: ['var(--font-sans)', 'Inter', 'system-ui', 'sans-serif'],
@@ -43,6 +59,10 @@ const config: Config = {
       },
       letterSpacing: {
         widestest: '0.28em',
+      },
+      boxShadow: {
+        soft: '0 20px 60px -20px rgba(61, 42, 30, 0.18)',
+        'soft-blush': '0 20px 50px -20px rgba(212, 165, 160, 0.45)',
       },
     },
   },

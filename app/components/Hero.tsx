@@ -11,7 +11,7 @@ export default function Hero() {
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background">
       {/* Video background */}
       <video
-        className="absolute inset-0 w-full h-full object-cover opacity-40"
+        className="absolute inset-0 w-full h-full object-cover opacity-30"
         autoPlay
         loop
         muted
@@ -22,17 +22,17 @@ export default function Hero() {
         <source src={HERO_VIDEO} type="video/mp4" />
       </video>
 
-      {/* Vignette + bottom fade */}
+      {/* Cream vignette + bottom fade */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            'radial-gradient(ellipse at center, transparent 0%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0.95) 100%)',
+            'radial-gradient(ellipse at center, rgba(250,246,240,0.25) 0%, rgba(250,246,240,0.65) 60%, rgba(250,246,240,0.95) 100%)',
         }}
         aria-hidden
       />
       <div
-        className="absolute bottom-0 left-0 right-0 h-40 pointer-events-none"
+        className="absolute bottom-0 left-0 right-0 h-48 pointer-events-none"
         style={{
           background:
             'linear-gradient(to top, hsl(var(--background)) 0%, transparent 100%)',
@@ -53,9 +53,9 @@ export default function Hero() {
           className="text-foreground leading-[0.95] mb-8 tracking-tight"
           style={{ fontSize: 'clamp(3rem, 8vw, 7.5rem)', fontWeight: 500 }}
         >
-          Get <span className="italic-accent text-foreground">Inspired</span>
+          Probuďte <span className="italic-accent text-blush-deep">krásu</span>,
           <br />
-          to <span className="italic-accent text-foreground">feel</span> beautiful.
+          kterou v sobě <span className="italic-accent text-blush-deep">nosíte</span>.
         </motion.h1>
 
         <motion.p

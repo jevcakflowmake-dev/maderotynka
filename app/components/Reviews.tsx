@@ -44,9 +44,9 @@ export default function Reviews() {
             className="lg:col-span-7 text-foreground tracking-tight leading-[0.95]"
             style={{ fontSize: 'clamp(2.4rem, 6vw, 5.5rem)', fontWeight: 500 }}
           >
-            Slova <span className="italic-accent">klientek</span>,
+            Slova <span className="italic-accent text-blush-deep">klientek</span>,
             <br />
-            které u nás našly <span className="italic-accent">cestu</span>.
+            které u nás našly <span className="italic-accent text-blush-deep">cestu</span>.
           </motion.h2>
           <motion.div
             {...fadeUp(0.2)}

@@ -73,7 +73,7 @@ export default function About() {
     >
       {/* Faint video bg */}
       <video
-        className="absolute inset-0 w-full h-full object-cover opacity-15"
+        className="absolute inset-0 w-full h-full object-cover opacity-20"
         autoPlay
         loop
         muted
@@ -86,7 +86,7 @@ export default function About() {
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            'linear-gradient(to bottom, hsl(var(--background)) 0%, rgba(0,0,0,0.85) 50%, hsl(var(--background)) 100%)',
+            'linear-gradient(to bottom, hsl(var(--background)) 0%, rgba(250,246,240,0.65) 50%, hsl(var(--background)) 100%)',
         }}
         aria-hidden
       />

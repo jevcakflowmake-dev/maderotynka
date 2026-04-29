@@ -56,9 +56,9 @@ export default function Faq() {
               className="text-foreground tracking-tight leading-[0.95] mb-8"
               style={{ fontSize: 'clamp(2.4rem, 6vw, 5rem)', fontWeight: 500 }}
             >
-              Otázky <span className="italic-accent">před</span>
+              Otázky <span className="italic-accent text-blush-deep">před</span>
               <br />
-              první <span className="italic-accent">návštěvou</span>.
+              první <span className="italic-accent text-blush-deep">návštěvou</span>.
             </h2>
             <p className="text-foreground/60 text-base leading-relaxed max-w-md mb-10">
               Pokud tu nenajdete odpověď, neváhejte mi napsat na Instagram —
