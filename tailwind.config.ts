@@ -1,6 +1,7 @@
 import type { Config } from 'tailwindcss'
 
 const config: Config = {
+  darkMode: 'class',
   content: [
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -9,27 +10,39 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        cream: '#FAF6F0',
-        sand: '#EFE4D6',
-        blush: '#E8C5BD',
-        'blush-soft': '#F2D9D2',
-        'blush-deep': '#D4A5A0',
-        gold: '#C9A87C',
-        'gold-soft': '#E2C9A1',
-        mocha: '#3D2A1E',
-        'mocha-soft': '#5A4233',
-        muted: '#A8927C',
+        background: 'hsl(var(--background))',
+        foreground: 'hsl(var(--foreground))',
+        card: {
+          DEFAULT: 'hsl(var(--card))',
+          foreground: 'hsl(var(--card-foreground))',
+        },
+        primary: {
+          DEFAULT: 'hsl(var(--primary))',
+          foreground: 'hsl(var(--primary-foreground))',
+        },
+        secondary: {
+          DEFAULT: 'hsl(var(--secondary))',
+          foreground: 'hsl(var(--secondary-foreground))',
+        },
+        muted: {
+          DEFAULT: 'hsl(var(--muted))',
+          foreground: 'hsl(var(--muted-foreground))',
+        },
+        accent: {
+          DEFAULT: 'hsl(var(--accent))',
+          foreground: 'hsl(var(--accent-foreground))',
+        },
+        border: 'hsl(var(--border))',
+        input: 'hsl(var(--input))',
+        ring: 'hsl(var(--ring))',
+        'hero-subtitle': 'hsl(var(--hero-subtitle))',
       },
       fontFamily: {
-        display: ['var(--font-display)', 'Cormorant Garamond', 'Georgia', 'serif'],
-        body: ['var(--font-body)', 'Outfit', 'system-ui', 'sans-serif'],
+        sans: ['var(--font-sans)', 'Inter', 'system-ui', 'sans-serif'],
+        serif: ['var(--font-serif)', 'Instrument Serif', 'Georgia', 'serif'],
       },
       letterSpacing: {
         widestest: '0.28em',
-      },
-      boxShadow: {
-        soft: '0 20px 60px -20px rgba(61, 42, 30, 0.18)',
-        'soft-blush': '0 20px 50px -20px rgba(212, 165, 160, 0.45)',
       },
     },
   },

@@ -1,175 +1,122 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { motion } from 'framer-motion'
+import { fadeUp } from '@/lib/animations'
+
+const HERO_VIDEO =
+  'https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260325_120549_0cd82c36-56b3-4dd9-b190-069cfc3a623f.mp4'
 
 export default function Hero() {
-  const ctaRef = useRef<HTMLAnchorElement>(null)
-
-  useEffect(() => {
-    const btn = ctaRef.current
-    if (!btn) return
-
-    const onMove = (e: MouseEvent) => {
-      const rect = btn.getBoundingClientRect()
-      const cx = rect.left + rect.width / 2
-      const cy = rect.top + rect.height / 2
-      const dist = Math.hypot(e.clientX - cx, e.clientY - cy)
-      if (dist > 220) {
-        btn.style.transform = 'translate(0,0)'
-        return
-      }
-      const dx = (e.clientX - cx) * 0.16
-      const dy = (e.clientY - cy) * 0.16
-      btn.style.transform = `translate(${dx}px, ${dy}px)`
-    }
-
-    const onLeave = () => {
-      btn.style.transform = 'translate(0,0)'
-    }
-
-    window.addEventListener('mousemove', onMove)
-    btn.addEventListener('mouseleave', onLeave)
-    return () => {
-      window.removeEventListener('mousemove', onMove)
-      btn.removeEventListener('mouseleave', onLeave)
-    }
-  }, [])
-
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-cream">
-      {/* Soft glow background */}
-      <div className="hero-glow absolute inset-0 pointer-events-none" />
-
-      {/* Decorative serif word */}
-      <div
-        className="absolute -right-[6%] top-[18%] select-none pointer-events-none font-display italic text-blush-soft/55 leading-none"
-        style={{ fontSize: 'clamp(14rem, 32vw, 32rem)', letterSpacing: '-0.04em' }}
-        aria-hidden
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-background">
+      {/* Video background */}
+      <video
+        className="absolute inset-0 w-full h-full object-cover opacity-40"
+        autoPlay
+        loop
+        muted
+        playsInline
+        preload="metadata"
+        poster=""
       >
-        beauté
-      </div>
+        <source src={HERO_VIDEO} type="video/mp4" />
+      </video>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 pt-32 pb-20 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center w-full">
-        {/* Left: text */}
-        <div className="lg:col-span-7">
-          <p className="anim-sub section-tag mb-8">Privátní studio · Boskovice</p>
+      {/* Vignette + bottom fade */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            'radial-gradient(ellipse at center, transparent 0%, rgba(0,0,0,0.4) 60%, rgba(0,0,0,0.95) 100%)',
+        }}
+        aria-hidden
+      />
+      <div
+        className="absolute bottom-0 left-0 right-0 h-40 pointer-events-none"
+        style={{
+          background:
+            'linear-gradient(to top, hsl(var(--background)) 0%, transparent 100%)',
+        }}
+        aria-hidden
+      />
 
-          <h1
-            className="anim-h1 headline text-mocha mb-8"
-            style={{
-              fontSize: 'clamp(3.4rem, 8.5vw, 8rem)',
-              lineHeight: '0.95',
-            }}
+      <div className="relative z-10 max-w-5xl mx-auto px-6 lg:px-10 pt-32 pb-20 text-center">
+        <motion.p
+          {...fadeUp(0)}
+          className="text-[11px] uppercase tracking-widestest text-foreground/60 mb-8"
+        >
+          Privátní studio · Boskovice
+        </motion.p>
+
+        <motion.h1
+          {...fadeUp(0.1)}
+          className="text-foreground leading-[0.95] mb-8 tracking-tight"
+          style={{ fontSize: 'clamp(3rem, 8vw, 7.5rem)', fontWeight: 500 }}
+        >
+          Get <span className="italic-accent text-foreground">Inspired</span>
+          <br />
+          to <span className="italic-accent text-foreground">feel</span> beautiful.
+        </motion.h1>
+
+        <motion.p
+          {...fadeUp(0.2)}
+          className="font-sans text-hero-subtitle/85 text-base lg:text-lg leading-relaxed max-w-xl mx-auto mb-10"
+        >
+          Maderoterapie, lymfomodeling a péče o pleť — kolumbijská technika
+          v privátním studiu na Nádražní v Boskovicích. Bez chemie, bez bolesti,
+          s viditelným výsledkem od první návštěvy.
+        </motion.p>
+
+        {/* Email form */}
+        <motion.form
+          {...fadeUp(0.3)}
+          onSubmit={(e) => {
+            e.preventDefault()
+            window.location.href = 'https://instagram.com/_maderotynka'
+          }}
+          className="liquid-glass rounded-full p-1.5 flex items-center gap-2 max-w-md mx-auto"
+        >
+          <input
+            type="email"
+            required
+            placeholder="Váš e-mail nebo Instagram"
+            className="flex-1 bg-transparent px-5 py-2.5 text-sm text-foreground placeholder:text-foreground/40 focus:outline-none"
+          />
+          <button
+            type="submit"
+            className="px-5 py-2.5 rounded-full bg-foreground text-background text-sm tracking-wide hover:bg-foreground/90 transition-colors duration-300 whitespace-nowrap"
           >
-            Jemná cesta
-            <br />
-            ke <em>kráse</em>,
-            <br />
-            kterou v sobě <em>nosíte</em>.
-          </h1>
+            Rezervovat
+          </button>
+        </motion.form>
 
-          <p className="anim-sub font-body text-mocha/75 text-lg leading-relaxed font-light max-w-lg mb-10">
-            Maderoterapie, lymfomodeling a péče o pleť — kolumbijská technika
-            v privátním studiu na Nádražní v Boskovicích. Bez chemie, bez bolesti,
-            s viditelným výsledkem od první návštěvy.
-          </p>
-
-          <div className="anim-cta flex flex-wrap items-center gap-4">
-            <a
-              ref={ctaRef}
-              href="#contact"
-              style={{ transition: 'transform 0.2s cubic-bezier(0.22,1,0.36,1), background-color 0.4s ease, color 0.4s ease' }}
-              className="btn-primary"
-            >
-              Rezervovat termín
-              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden>
-                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </a>
-            <a href="#services" className="btn-ghost">
-              Zobrazit ceník
-            </a>
-          </div>
-
-          {/* Stats row */}
-          <div className="anim-sub mt-16 pt-10 border-t border-mocha/10 grid grid-cols-3 gap-6 max-w-xl">
-            {[
-              { num: '6+', label: 'typů procedur' },
-              { num: '100%', label: 'přírodní technika' },
-              { num: '5.0', label: 'hodnocení klientek' },
-            ].map((s) => (
-              <div key={s.label}>
-                <p className="font-display text-mocha text-3xl lg:text-4xl leading-none mb-2">
-                  {s.num}
-                </p>
-                <p className="font-body text-[11px] text-muted uppercase tracking-widestest leading-tight">
-                  {s.label}
-                </p>
+        {/* Avatars + social proof */}
+        <motion.div
+          {...fadeUp(0.4)}
+          className="mt-10 flex items-center justify-center gap-4"
+        >
+          <div className="flex -space-x-2">
+            {['T', 'B', 'J'].map((initial) => (
+              <div
+                key={initial}
+                className="w-8 h-8 rounded-full border-2 border-background bg-muted flex items-center justify-center text-xs font-medium text-foreground/80"
+              >
+                {initial}
               </div>
             ))}
           </div>
-        </div>
-
-        {/* Right: image with floating badges */}
-        <div className="lg:col-span-5 relative hidden lg:block">
-          <div
-            className="anim-hero-img relative rounded-[2rem] overflow-hidden shadow-soft"
-            style={{ aspectRatio: '4/5' }}
-          >
-            <div
-              className="w-full h-full flex items-end justify-center relative"
-              style={{
-                background:
-                  'linear-gradient(155deg, #F2D9D2 0%, #E8C5BD 40%, #D4A5A0 75%, #C9A87C 100%)',
-              }}
-            >
-              {/* Decorative inner frame */}
-              <div
-                className="absolute inset-5 rounded-[1.5rem] border border-cream/40 pointer-events-none"
-                aria-hidden
-              />
-              <div className="mb-10 text-center px-8 relative z-10">
-                <p className="font-display italic text-cream text-3xl mb-2 drop-shadow-sm">
-                  Fotografie studia
-                </p>
-                <p className="font-body text-cream/80 text-xs uppercase tracking-widestest">
-                  připraveno pro tvé snímky
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Floating badge 1 — left */}
-          <div className="anim-float absolute -left-10 top-[22%] bg-cream rounded-2xl px-5 py-4 shadow-soft border border-blush/30 max-w-[180px]">
-            <p className="font-body text-[10px] text-muted uppercase tracking-widestest mb-1">
-              Výsledek
-            </p>
-            <p className="font-display text-mocha text-2xl leading-tight">1–3 cm</p>
-            <p className="font-body text-xs text-muted mt-1">od první procedury</p>
-          </div>
-
-          {/* Floating badge 2 — right */}
-          <div
-            className="anim-float absolute -right-6 bottom-[18%] bg-mocha rounded-2xl px-5 py-4 shadow-soft max-w-[200px]"
-            style={{ animationDelay: '1.5s' }}
-          >
-            <p className="font-body text-[10px] text-blush-deep uppercase tracking-widestest mb-1">
-              Nejoblíbenější
-            </p>
-            <p className="font-display italic text-cream text-xl leading-tight">
-              Premium balíček
-            </p>
-            <p className="font-body text-xs text-cream/70 mt-1">od 2 000 Kč</p>
-          </div>
-        </div>
+          <p className="text-sm text-foreground/60">
+            <span className="text-foreground">120+</span> spokojených klientek
+          </p>
+        </motion.div>
       </div>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 opacity-50 hidden md:flex">
-        <span className="font-body text-[10px] text-muted tracking-widestest uppercase">
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2 opacity-50 z-10">
+        <span className="text-[10px] tracking-widestest uppercase text-foreground/60">
           Posuňte níže
         </span>
-        <div className="w-px h-12 bg-gradient-to-b from-mocha/40 to-transparent" />
+        <div className="w-px h-10 bg-gradient-to-b from-foreground/40 to-transparent" />
       </div>
     </section>
   )

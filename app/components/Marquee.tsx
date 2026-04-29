@@ -14,29 +14,31 @@ export default function Marquee() {
   const doubled = [...items, ...items, ...items]
 
   return (
-    <section className="bg-sand py-7 overflow-hidden relative border-y border-blush/20">
-      {/* Soft fades on edges */}
+    <section className="bg-background py-10 overflow-hidden relative border-y border-border/40">
       <div
         className="absolute left-0 top-0 bottom-0 w-32 z-10 pointer-events-none"
-        style={{ background: 'linear-gradient(to right, #EFE4D6, transparent)' }}
+        style={{
+          background:
+            'linear-gradient(to right, hsl(var(--background)), transparent)',
+        }}
         aria-hidden
       />
       <div
         className="absolute right-0 top-0 bottom-0 w-32 z-10 pointer-events-none"
-        style={{ background: 'linear-gradient(to left, #EFE4D6, transparent)' }}
+        style={{
+          background:
+            'linear-gradient(to left, hsl(var(--background)), transparent)',
+        }}
         aria-hidden
       />
 
       <div className="marquee-track">
         {doubled.map((item, i) => (
-          <span key={i} className="flex items-center gap-8 pr-8 whitespace-nowrap">
-            <span className="font-display italic text-mocha text-2xl lg:text-3xl">
+          <span key={i} className="flex items-center gap-10 pr-10 whitespace-nowrap">
+            <span className="italic-accent text-foreground text-3xl lg:text-4xl">
               {item}
             </span>
-            <span
-              className="text-gold text-lg leading-none"
-              aria-hidden
-            >
+            <span className="text-foreground/30 text-base leading-none" aria-hidden>
               ✦
             </span>
           </span>

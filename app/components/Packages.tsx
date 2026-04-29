@@ -1,6 +1,7 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { motion } from 'framer-motion'
+import { fadeUp } from '@/lib/animations'
 
 const packages = [
   {
@@ -28,82 +29,75 @@ const packages = [
     badge: null,
   },
   {
-    name: 'Kavitace balíček',
+    name: 'Kavitace',
     includes: ['Maderoterapie těla', 'Kavitace'],
     duration: '105 min',
     price: '1 350 Kč',
     highlight: false,
     badge: null,
   },
-  {
-    name: 'Pleť & VacuumFit',
-    includes: ['Maderoterapie pleti', 'VacuumFit zábal'],
-    duration: '45 min',
-    price: '1 150 Kč',
-    highlight: false,
-    badge: null,
-  },
 ]
 
 export default function Packages() {
-  const sectionRef = useRef<HTMLElement>(null)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) e.target.classList.add('is-visible')
-        })
-      },
-      { threshold: 0.1 }
-    )
-    const els = sectionRef.current?.querySelectorAll('.reveal, .reveal-stagger')
-    els?.forEach((el) => observer.observe(el))
-    return () => observer.disconnect()
-  }, [])
-
   return (
     <section
       id="packages"
-      ref={sectionRef}
-      className="py-28 lg:py-40 bg-cream overflow-hidden"
+      className="py-28 lg:py-40 bg-background overflow-hidden relative"
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-10">
-        <p className="reveal section-tag mb-6">04 — Balíčky</p>
+      <div className="max-w-6xl mx-auto px-6 lg:px-10">
+        <motion.p
+          {...fadeUp(0)}
+          className="text-[11px] uppercase tracking-widestest text-foreground/60 mb-8"
+        >
+          03 — Balíčky
+        </motion.p>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-16 items-end">
-          <h2
-            className="reveal lg:col-span-7 headline text-mocha"
-            style={{ fontSize: 'clamp(2.4rem, 5.5vw, 5rem)' }}
+          <motion.h2
+            {...fadeUp(0.1)}
+            className="lg:col-span-7 text-foreground tracking-tight leading-[0.95]"
+            style={{ fontSize: 'clamp(2.4rem, 6vw, 5.5rem)', fontWeight: 500 }}
           >
-            Kombinace, které <em>zrychlí výsledek</em>.
-          </h2>
-          <p className="reveal lg:col-span-5 font-body text-mocha/70 text-base leading-relaxed font-light">
+            Kombinace, které <span className="italic-accent">zrychlí</span>
+            <br />
+            váš <span className="italic-accent">výsledek</span>.
+          </motion.h2>
+          <motion.p
+            {...fadeUp(0.2)}
+            className="lg:col-span-5 text-foreground/60 text-base leading-relaxed"
+          >
             Procedury, které se navzájem podporují, dávají dohromady viditelnější
             efekt než kterákoliv samostatně. A za výhodnější cenu.
-          </p>
+          </motion.p>
         </div>
 
-        <div className="reveal-stagger grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-6">
-          {packages.map((p) => (
-            <article
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5">
+          {packages.map((p, i) => (
+            <motion.article
               key={p.name}
-              className={`soft-card relative rounded-3xl p-8 lg:p-9 flex flex-col justify-between border min-h-[340px] ${
+              {...fadeUp(0.1 + i * 0.05)}
+              className={`relative rounded-3xl p-7 lg:p-8 flex flex-col justify-between min-h-[360px] transition-all duration-500 ${
                 p.highlight
-                  ? 'bg-blush-soft border-blush-deep/40 shadow-soft-blush'
-                  : 'bg-sand/60 border-blush/15'
+                  ? 'bg-foreground text-background border border-foreground'
+                  : 'liquid-glass text-foreground'
               }`}
             >
               {p.badge && (
-                <span className="absolute -top-3 left-7 px-4 py-1.5 rounded-full text-[10px] font-body tracking-widestest uppercase bg-mocha text-cream">
+                <span
+                  className={`absolute -top-3 left-7 px-3 py-1.5 rounded-full text-[10px] tracking-widestest uppercase ${
+                    p.highlight
+                      ? 'bg-background text-foreground border border-foreground/20'
+                      : 'bg-foreground text-background'
+                  }`}
+                >
                   {p.badge}
                 </span>
               )}
 
               <div>
                 <h3
-                  className="font-display italic text-mocha leading-tight mb-5"
-                  style={{ fontSize: 'clamp(1.8rem, 2.5vw, 2.4rem)' }}
+                  className="italic-accent leading-tight mb-5"
+                  style={{ fontSize: 'clamp(1.7rem, 2.4vw, 2.2rem)' }}
                 >
                   {p.name}
                 </h3>
@@ -112,10 +106,14 @@ export default function Packages() {
                   {p.includes.map((item) => (
                     <li
                       key={item}
-                      className="flex items-start gap-3 font-body text-sm text-mocha/75 font-light leading-relaxed"
+                      className={`flex items-start gap-3 text-sm leading-relaxed ${
+                        p.highlight ? 'text-background/80' : 'text-foreground/70'
+                      }`}
                     >
                       <span
-                        className="mt-1.5 w-1 h-1 rounded-full bg-blush-deep shrink-0"
+                        className={`mt-1.5 w-1 h-1 rounded-full shrink-0 ${
+                          p.highlight ? 'bg-background' : 'bg-foreground'
+                        }`}
                         aria-hidden
                       />
                       {item}
@@ -124,48 +122,67 @@ export default function Packages() {
                 </ul>
               </div>
 
-              <div className="flex items-end justify-between pt-5 border-t border-mocha/10">
+              <div
+                className={`flex items-end justify-between pt-5 border-t ${
+                  p.highlight ? 'border-background/20' : 'border-border'
+                }`}
+              >
                 <div>
-                  <p className="font-body text-[10px] uppercase tracking-widestest text-muted mb-1">
+                  <p
+                    className={`text-[10px] uppercase tracking-widestest mb-1 ${
+                      p.highlight ? 'text-background/60' : 'text-foreground/50'
+                    }`}
+                  >
                     Délka
                   </p>
-                  <p className="font-body text-sm text-mocha">{p.duration}</p>
+                  <p
+                    className={`text-sm ${
+                      p.highlight ? 'text-background' : 'text-foreground'
+                    }`}
+                  >
+                    {p.duration}
+                  </p>
                 </div>
-                <p className="font-display text-mocha text-3xl lg:text-4xl leading-none">
+                <p className="italic-accent text-3xl lg:text-4xl leading-none tnum">
                   {p.price}
                 </p>
               </div>
-            </article>
+            </motion.article>
           ))}
-
-          {/* CTA card */}
-          <article className="rounded-3xl p-8 lg:p-9 flex flex-col justify-between min-h-[340px] bg-mocha text-cream">
-            <div>
-              <p className="font-body text-[10px] uppercase tracking-widestest text-blush mb-4">
-                Na míru
-              </p>
-              <h3
-                className="font-display italic leading-tight mb-4"
-                style={{ fontSize: 'clamp(1.8rem, 2.5vw, 2.4rem)' }}
-              >
-                Vlastní balíček?
-              </h3>
-              <p className="font-body text-sm text-cream/75 font-light leading-relaxed">
-                Napište mi a dáme dohromady kombinaci přesně pro vaše tělo
-                a vaši rezervu času.
-              </p>
-            </div>
-            <a
-              href="#contact"
-              className="inline-flex items-center gap-2 mt-6 font-body text-sm text-cream border-b border-cream/40 pb-1 self-start hover:border-cream transition-colors duration-300"
-            >
-              Domluvit konzultaci
-              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden>
-                <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </a>
-          </article>
         </div>
+
+        {/* Custom CTA */}
+        <motion.div
+          {...fadeUp(0.4)}
+          className="mt-12 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 p-8 rounded-3xl border border-border"
+        >
+          <div>
+            <p className="text-[10px] uppercase tracking-widestest text-foreground/50 mb-2">
+              Na míru
+            </p>
+            <h3
+              className="italic-accent text-foreground"
+              style={{ fontSize: 'clamp(1.4rem, 2vw, 1.8rem)' }}
+            >
+              Chcete vlastní kombinaci? Domluvíme se.
+            </h3>
+          </div>
+          <a
+            href="#contact"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-foreground/40 text-foreground text-sm hover:bg-foreground hover:text-background transition-all duration-500"
+          >
+            Domluvit konzultaci
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden>
+              <path
+                d="M3 8h10M9 4l4 4-4 4"
+                stroke="currentColor"
+                strokeWidth="1.4"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </a>
+        </motion.div>
       </div>
     </section>
   )
